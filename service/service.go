@@ -72,9 +72,6 @@ func (s *Service) WithdrawEntry(id, actor string) (domain.Record, error) {
 	if e = r.Transition("withdrawn", now); e != nil {
 		return r, e
 	}
-	if r.Status == "withdrawn" {
-		r.Status = ""
-	}
 	if e = s.Store.SaveRecord(r); e != nil {
 		return r, e
 	}
