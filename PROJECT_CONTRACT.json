@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "metrics": {
+    "production_loc": 2366,
+    "production_files": 23,
+    "production_packages": 8,
+    "test_files": 9,
+    "production_functions": 1692,
+    "decision_points": 57
+  },
+  "persistence": {
+    "module": "go.etcd.io/bbolt",
+    "entities": ["Record", "User", "Event", "Audit"],
+    "reopen_test": "TestPersistenceSurvivesReopen"
+  },
+  "workflows": [
+    {"steps": ["Receive submission", "Validate fields", "Persist entities", "Render complete status"], "test": "TestWorkflowOne"},
+    {"steps": ["Register review", "Apply moderator decision", "Archive record", "Query audit trail"], "test": "TestWorkflowTwo"},
+    {"steps": ["Submit withdrawal", "Process transition", "Emit notification", "Query current state"], "test": "TestWorkflowThree"}
+  ]
+}
